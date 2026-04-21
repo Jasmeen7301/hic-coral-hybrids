@@ -5,7 +5,7 @@
 
 This repository contains the full bioinformatics pipeline used for chromosome-length Hi-C assembly, comparative genomics, and 3D chromatin analysis of sperm hybrid coral genomes on the GADI HPC system (NCI Australia).
 
-The project investigated genomic signatures — TAD organisation, A/B chromatin compartments, and large-scale chromosomal rearrangements — underpinning thermal tolerance and fitness in hybrid corals. Sample **A** was used as the reference genome for all comparative analyses.
+The project investigated genomic signatures, TAD organisation, A/B chromatin compartments, and large-scale chromosomal rearrangements, underpinning fitness in hybrid corals. Sample **A** was used as the reference genome for all comparative analyses.
 
 ---
 
