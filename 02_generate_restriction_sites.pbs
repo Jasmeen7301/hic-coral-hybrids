@@ -21,5 +21,5 @@ python3 /path/to/juicer/misc/generate_site_positions.py Arima "$dataset1" "$dir1
 python3 /path/to/juicer/misc/generate_site_positions.py Arima "$dataset2" "$dir2"
 mv sample_hap2* /path/to/restriction_sites/
 # Run generate_site_positions.py for dataset2
-#python3 /path/to/juicer/misc//generate_site_positions.py MboI "$dataset2" /path/to/juicer/references/hap2_hic.fasta
+#python3 /path/to/juicer/misc/generate_site_positions.py MboI "$dataset2" /path/to/juicer/references/hap2_hic.fasta
 
