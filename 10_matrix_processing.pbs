@@ -5,13 +5,13 @@
 #PBS -l ncpus=8
 #PBS -l wd
 #PBS -q normal
-#PBS -P aq22
-#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+#PBS -P project
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
 
-source /g/data/ey34/conda-new/conda-setup.sh
+source /path/to/conda-setup.sh
 conda activate hicexplorer
 
-SAMPLE="2561_hap1"
+SAMPLE="sample_hap1"
 HIC_FILE="out_JBAT.hic"
 RES_TAD=25000
 RES_COMP=2500000
