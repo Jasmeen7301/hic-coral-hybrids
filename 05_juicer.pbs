@@ -4,8 +4,8 @@
 #PBS -l ncpus=24
 #PBS -l wd
 #PBS -q normal
-#PBS -P aq22
-#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+#PBS -P project
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
 # Export updated Java options
 export _JAVA_OPTIONS="-Xmx150G -Xms150G"
 
@@ -13,11 +13,11 @@ export _JAVA_OPTIONS="-Xmx150G -Xms150G"
 module load java bwa samtools
 
 # Set working directory and paths
-juicer_dir="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/" 
-chrom_sizes="chrom_sizes_2561_hap1" 
-reference_genome="references/2561_hap1_clean.fasta" 
-enzyme_file="restriction_sites/2561_hap1_clean.fasta_Arima.txt" 
-juicer_script="/scratch/rm18/aj3084/juicer/PBS/scripts/juicer.sh"
+juicer_dir="/path/to/sample_hap1/" 
+chrom_sizes="chrom_sizes_sample_hap1" 
+reference_genome="references/sample_hap1_clean.fasta" 
+enzyme_file="restriction_sites/sample_hap1_clean.fasta_Arima.txt" 
+juicer_script="/path/to/juicer/PBS/scripts/juicer.sh"
 
 # Run juicer
 $juicer_script -d "$juicer_dir" \
@@ -26,7 +26,7 @@ $juicer_script -d "$juicer_dir" \
                -s Arima \
                -z "$reference_genome" \
                -y "$enzyme_file" \
-	       -g "2561_hap1_clean"  
+	       -g "sample_hap1_clean"  
 
 # Notify completion
 echo "Juicer pipeline completed successfully!"
