@@ -1,6 +1,6 @@
 # Step 13 — Chromosomal Rearrangement Visualisation (Circos)
 
-Circos plots were used to visualise large-scale chromosomal rearrangements — inversions, fissions, and fusions — across F1 sperm hybrid genomes relative to reference sample 2578.
+Circos plots were used to visualise large-scale chromosomal rearrangements — inversions, fissions, and fusions, across sperm hybrid genomes relative to reference sample A.
 
 ## Scripts in this folder
 
@@ -47,6 +47,6 @@ circos -conf circos.conf
 
 ## Inputs required
 
-- Reference genome `.fai` index (sample 2578)
+- Reference genome `.fai` index (sample A)
 - Query genome `.fai` index (each hybrid sample)
 - PAF file from D-GENIES pairwise alignment
