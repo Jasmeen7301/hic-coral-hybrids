@@ -1,24 +1,24 @@
 #!/bin/bash
-#PBS -P d85
+#PBS -P project
 #PBS -q normal
 #PBS -l walltime=02:00:00
 #PBS -l ncpus=8
 #PBS -l mem=190GB
 #PBS -l jobfs=150GB
-#PBS -l storage=scratch/ey34+gdata/ey34+gdata/rm18
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
 #PBS -l wd
 
 # Load the conda environment and necessary modules
-source /g/data/ey34/conda-new/conda-setup.sh
+source /path/to/conda-setup.sh
 conda activate yahs
 module load samtools
 
 # Set paths
-#GENOME_SOURCE="/g/data/rm18/Reference_genomes/purebred_parental_genomes_corals/A_loripes/alor_genome.fasta"
-GENOME_LINK="2561_hap1_clean.fasta"
-#PROCESSED_BAM="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/aligned/merged_nodups.bam"
+#GENOME_SOURCE="/path/to/genome.fasta"
+GENOME_LINK="sample_hap1_clean.fasta"
+#PROCESSED_BAM="/path/to/aligned/merged_nodups.bam"
 #if sorted bam alreday exists then enable the line below and disable the line above
-SORTED_BAM="aligned/merged_nodups.sorted.bam"
+#SORTED_BAM="aligned/merged_nodups.sorted.bam"
 # Step 1: Create a soft link to the genome file in the current working directory
 #ln -sf $GENOME_SOURCE $GENOME_LINK
 
