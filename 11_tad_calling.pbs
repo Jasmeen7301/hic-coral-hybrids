@@ -17,7 +17,6 @@ MATRIX="${SAMPLE}_25kb.h5"
 mkdir -p tads
 
 # ── TAD calling using insulation score with FDR correction ───────────────────
-# Commands from HiCExplorer documentation: https://hicexplorer.readthedocs.io
 hicFindTADs \
   -m "$MATRIX" \
   --outPrefix "tads/${SAMPLE}" \
