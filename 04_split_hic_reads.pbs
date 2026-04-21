@@ -5,9 +5,9 @@
 #PBS -l software=amber
 #PBS -l wd
 #PBS -q normal
-#PBS -P d85
-#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
-hic_1="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/greenhill/2563/fastq/R1.fastq"
-hic_2="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/greenhill/2563/fastq/R2.fastq"
+#PBS -P project
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
+hic_1="/path/to/fastq/R1.fastq"
+hic_2="/path/to/fastq/R2.fastq"
 split -a 3 -l 20000000 -d --numeric-suffixes --additional-suffix=_R1.fastq $hic_1
 split -a 3 -l 20000000 -d --numeric-suffixes --additional-suffix=_R2.fastq $hic_2
