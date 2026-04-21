@@ -4,22 +4,22 @@
 #PBS -l ncpus=1
 #PBS -l wd
 #PBS -q normal
-#PBS -P aq22
-#PBS -l storage=gdata/ey34+gdata/rm18+scratch/ey34+scratch/rm18
+#PBS -P project
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
 
 # Load required modules
 module load python3
 
 # Set paths to datasets
-dataset1="2561_hap1_clean.fasta"
-dir1="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/references/2561_hap1_clean.fasta"
-dataset2="2561_hap2_clean.fasta"
-dir2="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap2/references/2561_hap2_clean.fasta"
+dataset1="sampple_hap1_clean.fasta"
+dir1="/path/to/sample_hap1_clean.fasta"
+dataset2="sample_hap2_clean.fasta"
+dir2="/path/to/sample_hap2_clean.fasta"
 
 # Run generate_site_positions.py for dataset1
-python3 /scratch/rm18/aj3084/juicer/misc/generate_site_positions.py Arima "$dataset1" "$dir1"
-python3 /scratch/ey34/aj3084/juicer/misc/generate_site_positions.py Arima "$dataset2" "$dir2"
-mv 2561_hap2* /scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap2/restriction_sites/
+python3 /path/to/juicer/misc/generate_site_positions.py Arima "$dataset1" "$dir1"
+python3 /path/to/juicer/misc/generate_site_positions.py Arima "$dataset2" "$dir2"
+mv sample_hap2* /path/to/restriction_sites/
 # Run generate_site_positions.py for dataset2
-#python3 /g/data/ey34/juicer/misc//generate_site_positions.py MboI "$dataset2" /g/data/ey34/juicer/references/NC_hap2_hic.fasta
+#python3 /path/to/juicer/misc//generate_site_positions.py MboI "$dataset2" /path/to/juicer/references/hap2_hic.fasta
 
