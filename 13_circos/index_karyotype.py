@@ -1,11 +1,11 @@
 # Define full paths and labels/colors for reference and samples
-ref_fai = "/g/data/ey34/corals_HiC/AllHiC_Arima_diploid/C/C_2578_final_genome.fasta.fai"
+ref_fai = "/path/to/final_genome.fasta.fai"
 ref_label = "ref"
 ref_color = "red"
 
-sample_fai = "/scratch/rm18/jk1501/chrom_rearrangment/A/A_renamed.fasta.fai"
-sample_id = "A_2549"
-output_file = "/scratch/rm18/jk1501/chrom_rearrangment/A/final/20250626Acircos_karyotype.txt"
+sample_fai = "/path/to/sample_hap1.fasta.fai"
+sample_id = "sample_hap1"
+output_file = "/path/to/circos_karyotype.txt"
 
 def parse_fai(fai_path, prefix, label_prefix, color):
     lines = []
