@@ -1,7 +1,7 @@
 # Inputs
-paf_file = "/scratch/rm18/jk1501/chrom_rearrangment/A/map_A_renamed_to_C_2578_final_genome.paf"
-output_file = "/scratch/rm18/jk1501/chrom_rearrangment/A/final/color_20250626A_2549.links"
-sample_id = "A_2549"
+paf_file = "/path/to/final_genome.paf"
+output_file = "/path/to/color.links"
+sample_id = "sample_hap1"
 
 # Define a simple color palette for up to 14 chromosomes
 chrom_colors = {
