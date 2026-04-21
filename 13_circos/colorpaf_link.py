@@ -3,7 +3,7 @@ paf_file = "/path/to/final_genome.paf"
 output_file = "/path/to/color.links"
 sample_id = "sample_hap1"
 
-# Define a simple color palette for up to 14 chromosomes
+# Define a simple color palette for n number of chromosomes. Below example for chr 1-14
 chrom_colors = {
     "Chromosome_1": "chr1", "Chromosome_2": "chr2", "Chromosome_3": "chr3",
     "Chromosome_4": "chr4", "Chromosome_5": "chr5", "Chromosome_6": "chr6",
