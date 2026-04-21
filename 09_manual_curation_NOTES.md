@@ -19,5 +19,5 @@ This step is performed manually using the Juicebox Assembly Tools (JBAT) graphic
 ## Tips
 
 - Zoom into regions with weak diagonal signal to identify misjoins
-- Sample 2578 was used as the reference genome for all comparative analyses
+- Sample A was used as the reference genome for all comparative analyses
 - Compare before and after curation by toggling the original and curated `.hic` files
