@@ -1,0 +1,25 @@
+#!/bin/bash
+#PBS -l walltime=3:00:00
+#PBS -l mem=50G
+#PBS -l ncpus=1
+#PBS -l wd
+#PBS -q normal
+#PBS -P aq22
+#PBS -l storage=gdata/ey34+gdata/rm18+scratch/ey34+scratch/rm18
+
+# Load required modules
+module load python3
+
+# Set paths to datasets
+dataset1="2561_hap1_clean.fasta"
+dir1="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/references/2561_hap1_clean.fasta"
+dataset2="2561_hap2_clean.fasta"
+dir2="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap2/references/2561_hap2_clean.fasta"
+
+# Run generate_site_positions.py for dataset1
+python3 /scratch/rm18/aj3084/juicer/misc/generate_site_positions.py Arima "$dataset1" "$dir1"
+python3 /scratch/ey34/aj3084/juicer/misc/generate_site_positions.py Arima "$dataset2" "$dir2"
+mv 2561_hap2* /scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap2/restriction_sites/
+# Run generate_site_positions.py for dataset2
+#python3 /g/data/ey34/juicer/misc//generate_site_positions.py MboI "$dataset2" /g/data/ey34/juicer/references/NC_hap2_hic.fasta
+

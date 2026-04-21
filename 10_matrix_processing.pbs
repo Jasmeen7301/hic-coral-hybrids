@@ -1,0 +1,46 @@
+#!/bin/bash
+#PBS -N hic_matrix_processing
+#PBS -l walltime=04:00:00
+#PBS -l mem=64GB
+#PBS -l ncpus=8
+#PBS -l wd
+#PBS -q normal
+#PBS -P aq22
+#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+
+source /g/data/ey34/conda-new/conda-setup.sh
+conda activate hicexplorer
+
+SAMPLE="2561_hap1"
+HIC_FILE="out_JBAT.hic"
+RES_TAD=25000
+RES_COMP=2500000
+
+# ── Convert .hic to .cool ─────────────────────────────────────────────────────
+hicConvertFormat \
+  -m "$HIC_FILE" \
+  --inputFormat hic \
+  --outputFormat cool \
+  -o "${SAMPLE}.cool" \
+  --resolutions $RES_TAD $RES_COMP
+
+# ── ICE normalisation ─────────────────────────────────────────────────────────
+cooler balance "${SAMPLE}.cool::resolutions/${RES_TAD}"
+cooler balance "${SAMPLE}.cool::resolutions/${RES_COMP}"
+
+# ── Convert to .h5 for HiCExplorer ───────────────────────────────────────────
+hicConvertFormat \
+  -m "${SAMPLE}.cool::resolutions/${RES_TAD}" \
+  --inputFormat cool \
+  --outputFormat h5 \
+  -o "${SAMPLE}_25kb.h5"
+
+hicConvertFormat \
+  -m "${SAMPLE}.cool::resolutions/${RES_COMP}" \
+  --inputFormat cool \
+  --outputFormat h5 \
+  -o "${SAMPLE}_2500kb.h5"
+
+echo "Matrix processing complete."
+echo "  TAD resolution (25 kb):         ${SAMPLE}_25kb.h5"
+echo "  Compartment resolution (2.5 Mb): ${SAMPLE}_2500kb.h5"

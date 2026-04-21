@@ -1,0 +1,51 @@
+#!/bin/bash
+#PBS -P d85
+#PBS -q normal
+#PBS -l walltime=02:00:00
+#PBS -l ncpus=8
+#PBS -l mem=190GB
+#PBS -l jobfs=150GB
+#PBS -l storage=scratch/ey34+gdata/ey34+gdata/rm18
+#PBS -l wd
+
+# Load the conda environment and necessary modules
+source /g/data/ey34/conda-new/conda-setup.sh
+conda activate yahs
+module load samtools
+
+# Set paths
+#GENOME_SOURCE="/g/data/rm18/Reference_genomes/purebred_parental_genomes_corals/A_loripes/alor_genome.fasta"
+GENOME_LINK="2561_hap1_clean.fasta"
+#PROCESSED_BAM="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/aligned/merged_nodups.bam"
+#if sorted bam alreday exists then enable the line below and disable the line above
+SORTED_BAM="aligned/merged_nodups.sorted.bam"
+# Step 1: Create a soft link to the genome file in the current working directory
+#ln -sf $GENOME_SOURCE $GENOME_LINK
+
+# Step 2: Ensure the genome is indexed for YAHS
+#if [ ! -f "${GENOME_LINK}.fai" ]; then
+#    echo "Indexing the genome with samtools..."
+#    samtools faidx $GENOME_LINK
+#fi
+
+# Step 3: Ensure the BAM file is sorted and indexed
+#SORTED_BAM="${PROCESSED_BAM%.bam}.sorted.bam"
+#if [ ! -f "$SORTED_BAM" ]; then
+#    echo "Sorting the BAM file..."
+#    samtools sort -o $SORTED_BAM $PROCESSED_BAM
+#fi
+
+#if [ ! -f "${SORTED_BAM}.bai" ]; then
+#    echo "Indexing the sorted BAM file..."
+#    samtools index $SORTED_BAM
+#fi
+
+# Step 4: Run YAHS for scaffolding
+echo "Running YAHS for scaffolding..."
+yahs -q 1 -a yahs.out_r11.agp \
+     -r 500,1000,2000,5000,10000,20000,50000,100000,200000,500000 \
+     --no-mem-check --no-contig-ec --no-scaffold-ec \
+     $GENOME_LINK $SORTED_BAM
+
+echo "YAHS scaffolding completed successfully."
+

@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -l walltime=1:00:00
+#PBS -l mem=64GB
+#PBS -l ncpus=4
+#PBS -l wd
+#PBS -q normal
+#PBS -P d85
+#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+
+# Load necessary modules
+module load java
+
+# Define paths
+JUICER_JAR="/scratch/rm18/aj3084/juicer/CPU/common/juicer_tools.1.9.9_jcuda.0.8.jar"
+LOG_FILE="out_JBAT.log"
+OUTPUT_PREFIX="out_JBAT"
+
+# Run the juicer pre-command with dynamic input
+echo "Running Juicer pre-process command..."
+java -jar -Xmx32G $JUICER_JAR pre $OUTPUT_PREFIX.txt $OUTPUT_PREFIX.hic.part <(cat $LOG_FILE | grep PRE_C_SIZE | awk '{print $2" "$3}')
+
+# Move the generated file to its final name
+mv $OUTPUT_PREFIX.hic.part $OUTPUT_PREFIX.hic
+
+# Final message
+echo "Juicer pre-processing and file generation completed."
+

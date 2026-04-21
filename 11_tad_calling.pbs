@@ -1,0 +1,47 @@
+#!/bin/bash
+#PBS -N tad_calling
+#PBS -l walltime=04:00:00
+#PBS -l mem=64GB
+#PBS -l ncpus=8
+#PBS -l wd
+#PBS -q normal
+#PBS -P aq22
+#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+
+source /g/data/ey34/conda-new/conda-setup.sh
+conda activate hicexplorer
+
+SAMPLE="2561_hap1"
+MATRIX="${SAMPLE}_25kb.h5"
+
+mkdir -p tads
+
+# ── TAD calling using insulation score with FDR correction ───────────────────
+# Commands from HiCExplorer documentation: https://hicexplorer.readthedocs.io
+hicFindTADs \
+  -m "$MATRIX" \
+  --outPrefix "tads/${SAMPLE}" \
+  --correctForMultipleTesting fdr \
+  --threshold 0.05 \
+  --delta 0.01 \
+  --step 3 \
+  --window 10
+
+# Outputs:
+#   tads/<sample>_domains.bed      — TAD domain coordinates
+#   tads/<sample>_boundaries.bed   — TAD boundary positions
+#   tads/<sample>_score.bedgraph   — insulation scores
+
+# ── Plot TAD matrix ───────────────────────────────────────────────────────────
+hicPlotMatrix \
+  -m "$MATRIX" \
+  --outFileName "tads/${SAMPLE}_tad_plot.png" \
+  --perChromosome \
+  --clearMaskedBins \
+  --chromosomeOrder $(cut -f1 chrom_sizes_${SAMPLE} | tr '\n' ' ')
+
+echo "TAD calling complete."
+N_TADS=$(wc -l < "tads/${SAMPLE}_domains.bed")
+N_BOUNDS=$(wc -l < "tads/${SAMPLE}_boundaries.bed")
+echo "  TADs called:       $N_TADS"
+echo "  Boundaries called: $N_BOUNDS"

@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -l walltime=08:00:00
+#PBS -l mem=80G
+#PBS -l ncpus=24
+#PBS -l wd
+#PBS -q normal
+#PBS -P aq22
+#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+# Export updated Java options
+export _JAVA_OPTIONS="-Xmx150G -Xms150G"
+
+# Load necessary modules
+module load java bwa samtools
+
+# Set working directory and paths
+juicer_dir="/scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/scaffolding/2561_hap1/" 
+chrom_sizes="chrom_sizes_2561_hap1" 
+reference_genome="references/2561_hap1_clean.fasta" 
+enzyme_file="restriction_sites/2561_hap1_clean.fasta_Arima.txt" 
+juicer_script="/scratch/rm18/aj3084/juicer/PBS/scripts/juicer.sh"
+
+# Run juicer
+$juicer_script -d "$juicer_dir" \
+               -t 24 \
+               -p "$chrom_sizes" \
+               -s Arima \
+               -z "$reference_genome" \
+               -y "$enzyme_file" \
+	       -g "2561_hap1_clean"  
+
+# Notify completion
+echo "Juicer pipeline completed successfully!"
+

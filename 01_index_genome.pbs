@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -l walltime=00:30:00
+#PBS -l mem=50G
+#PBS -l ncpus=1
+#PBS -l wd
+#PBS -q normal
+#PBS -P aq22
+#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+
+# Load necessary modules
+module load bwa
+
+# Create a soft link to the reference genome in the current working directory
+ln -s /scratch/ey34/aj3084/coral_hybrids/Hybrid_Adults_HiFi/04_Assemblies/hifiasm_hic_v2/2561_v2/2561_assembly/metagenome_hap1/2561_hap1_clean.fasta .
+# Index the genome using the symlink in the current directory
+bwa index 2561_hap1_clean.fasta
+
