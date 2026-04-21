@@ -4,10 +4,10 @@
 #PBS -l ncpus=2
 #PBS -l wd
 #PBS -q normal
-#PBS -P d85
-#PBS -l storage=gdata/ey34+scratch/ey34+gdata/rm18+scratch/rm18
+#PBS -P project
+#PBS -l storage=gdata/<project1>+scratch/<project1>+gdata/<project2>+scratch/<project2>
 
-source /g/data/ey34/conda-new/conda-setup.sh
+source /path/to/conda-setup.sh
 conda activate yahs
-juicer pre -a -o out_JBAT -q 20 yahs.out.bin yahs.out_scaffolds_final.agp 2561_hap1_clean.fasta.fai > out_JBAT.log 2>&1
+juicer pre -a -o out_JBAT -q 20 yahs.out.bin yahs.out_scaffolds_final.agp sample_hap1_clean.fasta.fai > out_JBAT.log 2>&1
 
